@@ -8,6 +8,7 @@ package arrays;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Random;
 	
 import javax.swing.JButton;
@@ -22,7 +23,7 @@ public class _02_FindTheHiddenButton implements ActionListener{
 	JPanel panel;
 	
 	//1. create an array of JButtons. Don't initialize it yet.
-	JButton [] b = new JButton[5];
+	JButton [] b;
 	//2 create an int variable called hiddenButton
 	int hiddenButton;
 	public static void main(String[] args) {
@@ -38,10 +39,10 @@ public class _02_FindTheHiddenButton implements ActionListener{
 		String answer = JOptionPane.showInputDialog("Can I get a number?");
 		//4. Initialize the array of JButtons to be the size of the int created in step 3
 		int bSize = Integer.parseInt(answer);
-		JPanel p = new JPanel();
+		b=new JButton[bSize];
 		for (int i = 0; i < b.length; i++) {
 			b[i]= new JButton();
-			p.add(b[i]);
+			panel.add(b[i]);
 			b[i].addActionListener(this);
 			b[i].setSize(bSize, bSize);
 		}
@@ -52,20 +53,27 @@ public class _02_FindTheHiddenButton implements ActionListener{
 		
 		//9 add the panel to the frame
 		JFrame f = new JFrame();
-		f.add(p);
+		f.add(panel);
 		//10. call setExtendedState(JFrame.MAXIMIZED_BOTH) on your JFrame object.
-		
+		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		//11. set the JFrame to visible.
-		
+		f.setVisible(true);
 		//12. Give the user the instructions for the game.
-		
+		JOptionPane.showMessageDialog(null, "Try guess the correct button or else...");
 		//13. initialize the hiddenButton variable to a random number less than the int created in step 3
-		
+		Random r = new Random();
+		int ran = r.nextInt(bSize);
+		hiddenButton = ran;
 		//14. Set the text of the JButton located at hiddenButton to  "ME"
 
 		//15. Use Thread.sleep(1000); to pause the program.
 		//    Surround it with a try/catch - use Eclipse helper for this
-		
+try {
+	Thread.sleep(1000);
+} catch (InterruptedException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
 		//16. Set the text of the JButton located at hiddenButton to be blank.
 		
 	}
@@ -75,7 +83,13 @@ public class _02_FindTheHiddenButton implements ActionListener{
 		JButton buttonClicked = (JButton)e.getSource();
 		
 		//17. if the hiddenButton is clicked, tell the user that they win.
-		
+		if(buttonClicked == b[hiddenButton]) {
+			JOptionPane.showMessageDialog(null, "You win!");
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Try again!");
+		}
+			
 		//18. else tell them to try again
 	}
 }
