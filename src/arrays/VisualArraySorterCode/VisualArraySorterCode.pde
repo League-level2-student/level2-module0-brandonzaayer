@@ -19,16 +19,16 @@ noStroke();
 
 void draw() {
   //6. set the background color with background(r, g, b);
-background(0, 0, 0);
+background(255, 0, 0);
   //7. set the color for your graph
-color(0, 0, 0);
+color(0, 0, 255);
   //8. draw a rectangle for each int in your array.
   //   the x value will be the current index in the array
   //   the y value will the height variable
   //   the width is 1 (one)
   //   the height is negative the value of the element at the current index of the array
   for (int i=0;i<a.length;i++) {
-    rect(a[i], height, 1, a[i]*-1);
+    rect(i, height, 1, a[i]*-1);
     }
   //9. call the stepSort method
   stepSort(a);
